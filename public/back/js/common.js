@@ -28,13 +28,17 @@ $(function () {
   $(".lt_main .pull-right").on("click",function () {  
     $("#logoutModal").modal("show");
   });
-  $("#logoutBtn").click(function () {  
+
+  $(".logoutBtn").click(function () { 
+    console.log(1); 
     $.ajax({
       type: 'get',
-      url: '/employee/employeeLogin',
+      url: '/employee/employeeLogout',
       dataType: "json",
       success: function (info) {  
-
+        if(info.success) {
+          location.href = "login.html"
+        }
       }
     });
   });
