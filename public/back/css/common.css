@@ -33,6 +33,7 @@ a:active {
 
 
 
+
 /*  */
 .lt_aside {
   width: 180px;
@@ -139,4 +140,7 @@ a:active {
 
 
 
+.table.table.table-bordered {
+  margin-top: 20px;
+}
 

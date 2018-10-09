@@ -83,9 +83,10 @@
       </table>
       <!-- 3x 分页 -->
       <div class="pull-right">
-        <ul id="paginator">
+          <ul id="paginator">
+        </ul>
       </div>
-      </ul>
+
 
     </div>
   </div>
@@ -113,14 +114,38 @@
     </div>
   </div>
 
+  <!-- 启用禁用按钮模态框 -->
+  <div class="modal fade" tabindex="-1" id="userModal">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" ><span>&times;</span></button>
+            <h4 class="modal-title">温馨提示</h4>
+          </div>
+          <div class="modal-body">
+            <p style="color:#A94442">
+              <i class="glyphicon glyphicon-info-sign"></i>
+              <span>您确定执行此操作吗？</span>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+            <button type="button"  class="btn btn-primary  submitBtn">确定</button>
+          </div>  
+        </div>
+      </div>
+    </div>
+
+
+  <!-- 模板 -->
   <script type="text/template" id="tmp">
     {{ each rows v i }}
           <tr>
-            <td>{{ i + 1 + (page-1)*5 }}</td>
+            <td>{{ i + 1 + (page-1) * 5 }}</td>
             <td>{{ v.username }}</td>
             <td>{{ v.mobile }}</td>
             <td>{{ v.isDelete === 1 ? "正常" : "已禁用" }}</td>
-            <td>
+            <td data-id="{{ v.id }}">
               {{ if v.isDelete === 1}}
               <button class="btn btn-danger">禁用</button>
               {{ else }}

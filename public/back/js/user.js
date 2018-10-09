@@ -1,6 +1,8 @@
 $(function () {  
   var currentPage = 1; //当前页码
   var pageSize = 5;   //每页多少条
+  var currentId;
+  var isDelete;
   // 一进入页面调用
   render();
   function render() {  
@@ -31,6 +33,35 @@ $(function () {
       }
     });
   }
+  
+  $("tbody").on("click", ".btn", function () {  
+    // console.log(1);
+    $("#userModal").modal("show");
+
+    currentId = $(this).parent().data("id");
+    // console.log(currentId);
+    isDelete = $(this).hasClass("btn-danger") ? 0 : 1 ;
+      console.log(isDelete);
+  });
+  $(".submitBtn").on("click",function () {  
+
+    $.ajax({
+      type: "post",
+      url: "/user/updateUser",
+      data: {
+        id: currentId,
+        isDelete: isDelete
+      },
+      dataType: "json",
+      success: function (info) {
+        if(info.success) {
+          render();
+          $("#userModal").modal("hide");
+        }  
+        
+      }
+    })
+  })
   
 
 });
